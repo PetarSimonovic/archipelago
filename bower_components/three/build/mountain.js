@@ -48,8 +48,8 @@ scene.add(sun);
 
 
 function raiseMountain () {
-  let mountainRadius = Math.floor(Math.random() * 20) + 15;
-  let mountainHeight = Math.floor(Math.random() * 5) + 15;
+  let mountainRadius = Math.floor(Math.random() * 10);
+  let mountainHeight = Math.floor(Math.random() * 10);
   let planePosition = groundLevel
   createPlane(mountainRadius, mountainHeight, planePosition);
 }
@@ -91,7 +91,7 @@ function animate() {
 animate();
 
 
-// KEY PRESS DETECTION
+// KEY PRESS DETECTION - update (below is deprecated)
 
 document.onkeydown = checkKey;
 
@@ -100,16 +100,32 @@ function checkKey(e) {
     e = e || window.event;
 
     if (e.keyCode == '38') {
-        camera.rotation.x += 0.05;
+        camera.position.y += 1;
     }
     else if (e.keyCode == '40') {
-      camera.rotation.x -= 0.05;
+      camera.position.y -= 1;
     }
     else if (e.keyCode == '37') {
-      camera.rotation.y += 0.05;
+      camera.position.x += 1;
     }
     else if (e.keyCode == '39') {
-      camera.rotation.y -= 0.05;
+      camera.position.x -= 1;
     }
+
+    else if (e.keyCode == '87') {
+      camera.position.z -= 1;
+    }
+
+    else if (e.keyCode == '83') {
+      camera.position.z += 1;
+    }
+
+    else if (e.keyCode == '65') {
+      camera.rotation.y += 0.05;
+    }
+
+     else if (e.keyCode == '68') {
+       camera.rotation.y -= 0.05;
+      }
 
 }
