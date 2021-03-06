@@ -88,7 +88,10 @@ function getPosition() {
 }
 
 function getColour(planeCount) {
-  if (planeCount <= 2 ) {
+  if (planeCount === 1) {
+    return 0xF2D16B
+  }
+  if (planeCount <= 3 ) {
     return 0x2D6514
   }
   else if (planeCount <= 4 ) {
