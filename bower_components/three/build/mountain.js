@@ -11,66 +11,19 @@ const renderer = new THREE.WebGLRenderer( ); // add { alpha: true } to set backg
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild(renderer.domElement);
 
-// const geometry = new THREE.DodecahedronGeometry(2, 1);
-// const material = new THREE.MeshBasicMaterial( {
-//   color: 0x00ff00
-// })
-// const cube = new THREE.Mesh (geometry, material);
-// scene.add( cube );
-// camera.position.z = 5
-//
-//
-// function animate() {
-//   requestAnimationFrame ( animate );
-//   cube.rotation.x += 0.01;
-//   cube.rotation.y += 0.01;
-//   renderer.render ( scene, camera );
-//
-// }
-// animate();
 
-
-// const WIDTH = 400;
-// const HEIGHT = 300;
-//
-// const VIEW_ANGLE = 45;
-// const ASPECT = WIDTH / HEIGHT;
-// const NEAR = 0.1;
-// const FAR = 10000;
-//
-// const renderer = new THREE.WebGLRenderer();
-// const camera = new THREE.PerspectiveCamera ( VIEW_ANGLE, ASPECT, NEAR, FAR );
-// const scene = new THREE.Scene();
-//
-// scene.add(camera);
-// renderer.setSize(WIDTH, HEIGHT);
-// document.body.appendChild(renderer.domElement);
-
-// const RADIUS = 50;
-// const SEGMENTS = 16;
-// const RINGS = 16;
-// const sphereMaterial = new THREE.MeshLambertMaterial(
-//   {
-//   color: 0xCC0000
-// })
-//
-// const sphere = new THREE.Mesh(
-//   new THREE.SphereGeometry( RADIUS, SEGMENTS, RINGS),
-//
-//   sphereMaterial);
-//
-
+// Build World
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
-const geometry = new THREE.CylinderGeometry( 50, 50, 1, 20 )
+const world_geometry = new THREE.CylinderGeometry( 50, 50, 1, 20 )
 
-const material = new THREE.MeshBasicMaterial ( {
+const world_material = new THREE.MeshBasicMaterial ( {
   color: 0x136d15,
   side: THREE.DoubleSide
 });
 
-const world = new THREE.Mesh (geometry, material)
+const world = new THREE.Mesh (world_geometry, world_material)
 
 scene.add(world)
 
@@ -82,19 +35,58 @@ camera.position.z = -10
 camera.position.y = 50
 
 
+// SUN  - is this even doing anything?
 const sun = new THREE.DirectionalLight(0xFFFFFF);
 sun.castShadow = true
-
-// set its position
-
-
-// add to the scene
 scene.add(sun);
 
+// WORLD BUILDERS
+
+// Mountain
 
 
 
-// Animate the scene
+function raiseMountain () {
+  let planePosition = groundLevel
+  let mountainRadius = 25
+  let mountainHeight = 20
+  // setPlaneProperties(mountainRadius, mountainHeight);
+  let planeCount = mountainHeight / 5
+  createPlane(mountainRadius, mountainHeight, planePosition, planeCount);
+}
+
+// function setPlaneProperties() {
+//   let mountainRadius = Math.floor(Math.random() * (10 - 30) + 10);
+//   let mountainHeight = Math.floor(Math.random() * (10 - 30) + 10);
+//   console.log(mountainRadius)
+//   console.log(mountainHeight)
+// }
+
+// radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
+
+
+function createPlane(mountainRadius, mountainHeight, planePosition, planeCount) {
+    let i = 0
+  for (i = 0; i < planeCount; i++) {
+    console.log("Generating plane")
+    let planeGeometry = new THREE.CylinderGeometry( mountainRadius, mountainRadius, 5, 20 )
+    let planeMaterial = new THREE.MeshBasicMaterial ( {
+      color: 0x7a7372,
+      side: THREE.DoubleSide
+    });
+    let plane  = new THREE.Mesh (planeGeometry, planeMaterial)
+    scene.add(plane)
+    plane.position.z = -100
+    plane.position.y = planePosition += 5
+  }
+}
+
+
+raiseMountain()
+
+
+// CONFIG
+
 function animate() {
   requestAnimationFrame ( animate );
   renderer.render ( scene, camera );
@@ -113,19 +105,16 @@ function checkKey(e) {
     e = e || window.event;
 
     if (e.keyCode == '38') {
-        world.rotation.x += 0.05;
+        camera.rotation.x += 0.05;
     }
     else if (e.keyCode == '40') {
-      world.rotation.x -= 0.05;
+      camera.rotation.x -= 0.05;
     }
     else if (e.keyCode == '37') {
-      world.rotation.y += 0.05;
+      camera.rotation.y += 0.05;
     }
     else if (e.keyCode == '39') {
-      world.rotation.y -= 0.05;
+      camera.rotation.y -= 0.05;
     }
 
-}
-
-function raiseMountain () {
 }
