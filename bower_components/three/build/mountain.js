@@ -1,7 +1,7 @@
 
 // variables
 
-let groundLevel = 20;
+let seaLevel = 20;
 
 
 // BASIC SET UP
@@ -20,7 +20,7 @@ document.body.appendChild(renderer.domElement);
 const world_geometry = new THREE.CylinderGeometry( 50, 50, 1, 20 )
 
 const world_material = new THREE.MeshBasicMaterial ( {
-  color: 0x136d15,
+  color: 0x006994,
   side: THREE.DoubleSide
 });
 
@@ -30,7 +30,7 @@ scene.add(world)
 
 // plane position
 world.position.z = -100
-world.position.y = groundLevel
+world.position.y = seaLevel
 
 camera.position.z = -10
 camera.position.y = 50
@@ -52,7 +52,7 @@ function raiseTerrain () {
   console.log(`terrainRadius: ${terrainRadius}`)
   let terrainHeight = Math.floor(Math.random() * 10) + 1;
   console.log(`terrainHeight: ${terrainHeight}`)
-  let planePosition = groundLevel
+  let planePosition = seaLevel
   createPlane(terrainRadius, terrainHeight, planePosition);
 }
 
@@ -65,7 +65,7 @@ function createPlane(terrainRadius, terrainHeight, planePosition) {
   while ( planeCount < terrainHeight && terrainRadius > 1) {
     planeHeight = Math.floor(Math.random() * 4) + 1
     console.log(terrainRadius)
-    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 5, 20, 20 )
+    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 0.5, 15, 20 )
     let planeMaterial = new THREE.MeshBasicMaterial ( {
       color: getColour(planeCount),
       side: THREE.DoubleSide
@@ -74,7 +74,7 @@ function createPlane(terrainRadius, terrainHeight, planePosition) {
     scene.add(plane)
     plane.position.z = -100
     plane.position.y = planePosition
-    planePosition += 5
+    planePosition += 0.5
     terrainRadius -= 1
     planeCount += 1
   }
