@@ -1,5 +1,7 @@
 
+// variables
 
+let groundLevel = 20;
 
 // BASIC SET UP
 const scene = new THREE.Scene();
@@ -74,7 +76,7 @@ scene.add(world)
 
 // plane position
 world.position.z = -100
-world.position.y = 20
+world.position.y = groundLevel
 
 camera.position.z = -10
 camera.position.y = 50
@@ -123,4 +125,7 @@ function checkKey(e) {
       world.rotation.y -= 0.05;
     }
 
+}
+
+function raiseMountain () {
 }
