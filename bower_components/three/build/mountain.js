@@ -3,6 +3,7 @@
 
 let groundLevel = 20;
 
+
 // BASIC SET UP
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0x87ceeb );
@@ -47,28 +48,20 @@ scene.add(sun);
 
 
 function raiseMountain () {
+  let mountainRadius = Math.floor(Math.random() * 20) + 15;
+  let mountainHeight = Math.floor(Math.random() * 20) + 15;
   let planePosition = groundLevel
-  let mountainRadius = 25
-  let mountainHeight = 20
-  // setPlaneProperties(mountainRadius, mountainHeight);
-  let planeCount = mountainHeight / 5
-  createPlane(mountainRadius, mountainHeight, planePosition, planeCount);
+  createPlane(mountainRadius, mountainHeight, planePosition);
 }
 
-// function setPlaneProperties() {
-//   let mountainRadius = Math.floor(Math.random() * (10 - 30) + 10);
-//   let mountainHeight = Math.floor(Math.random() * (10 - 30) + 10);
-//   console.log(mountainRadius)
-//   console.log(mountainHeight)
-// }
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
 
-function createPlane(mountainRadius, mountainHeight, planePosition, planeCount) {
-    let i = 0
-  for (i = 0; i < planeCount; i++) {
-    console.log("Generating plane")
+function createPlane(mountainRadius, mountainHeight, planePosition) {
+  let planeCount = 0
+  while ( planeCount < mountainHeight && mountainRadius > 1) {
+    console.log(mountainRadius)
     let planeGeometry = new THREE.CylinderGeometry( mountainRadius, mountainRadius, 5, 20 )
     let planeMaterial = new THREE.MeshBasicMaterial ( {
       color: 0x7a7372,
@@ -78,6 +71,8 @@ function createPlane(mountainRadius, mountainHeight, planePosition, planeCount) 
     scene.add(plane)
     plane.position.z = -100
     plane.position.y = planePosition += 5
+    mountainRadius -= 1
+    planeCount += 1
   }
 }
 
