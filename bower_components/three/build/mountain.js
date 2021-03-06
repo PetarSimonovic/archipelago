@@ -17,7 +17,7 @@ document.body.appendChild(renderer.domElement);
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
-const world_geometry = new THREE.CylinderGeometry( 50, 60, 1, 20 )
+const world_geometry = new THREE.CylinderGeometry( 70, 70, 1, 20 )
 
 const world_material = new THREE.MeshBasicMaterial ( {
   color: 0x006994,
@@ -62,7 +62,7 @@ function createPlane(terrainRadius, terrainHeight) {
   let planeCount = 1
   let elevation = seaLevel
   let planePositionX = getPosition();
-  let planePositionZ = getPosition();
+  let planePositionZ = getPosition() - 100;
   while ( planeCount < terrainHeight && terrainRadius > 1) {
     let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 1, 15, 20 )
     let planeMaterial = new THREE.MeshBasicMaterial ( {
@@ -74,6 +74,7 @@ function createPlane(terrainRadius, terrainHeight) {
     plane.position.z = -100
     plane.position.y = elevation
     plane.position.x = planePositionX
+    plane.position.z = planePositionZ
     elevation += 1
     terrainRadius -= 1
     planeCount += 1
