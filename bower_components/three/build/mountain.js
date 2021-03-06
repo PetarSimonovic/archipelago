@@ -48,31 +48,72 @@ scene.add(sun);
 
 
 function raiseMountain () {
-  let mountainRadius = Math.floor(Math.random() * 10);
-  let mountainHeight = Math.floor(Math.random() * 10);
+  let mountainRadius = Math.floor(Math.random() * 10) + 1;
+  console.log(`mountainRadius: ${mountainRadius}`)
+  let mountainHeight = Math.floor(Math.random() * 10) + 1;
+  console.log(`mountainHeight: ${mountainHeight}`)
   let planePosition = groundLevel
   createPlane(mountainRadius, mountainHeight, planePosition);
 }
 
 
-// radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
-
+// radiusTop (mountainRadius), radiusBottom (mountainRadius), height (random - 1-5), radialSegments (faces around circumference - random, 5-20), heightSegments( faces along height - random, 5-20)
 
 function createPlane(mountainRadius, mountainHeight, planePosition) {
-  let planeCount = 0
+  let planeCount = 1
+  let planeHeight = 0
   while ( planeCount < mountainHeight && mountainRadius > 1) {
+    planeHeight = Math.floor(Math.random() * 4) + 1
     console.log(mountainRadius)
-    let planeGeometry = new THREE.CylinderGeometry( mountainRadius, mountainRadius, 5, 20 )
+    let planeGeometry = new THREE.CylinderGeometry( mountainRadius, mountainRadius, 5, 20, 20 )
     let planeMaterial = new THREE.MeshBasicMaterial ( {
-      color: 0x7a7372,
+      color: getColour(planeCount),
       side: THREE.DoubleSide
     });
     let plane  = new THREE.Mesh (planeGeometry, planeMaterial)
     scene.add(plane)
     plane.position.z = -100
-    plane.position.y = planePosition += 5
+    plane.position.y = planePosition
+    planePosition += 5
     mountainRadius -= 1
     planeCount += 1
+  }
+}
+
+function getColour(planeCount) {
+  console.log("Getting colour")
+  if (planeCount === 1) {
+    return 0x2D6514
+  }
+  else if (planeCount === 2 ) {
+    return 0x528124
+  }
+  else if (planeCount === 3 ) {
+    return 0x7C9D39
+  }
+  else if (planeCount === 4 ) {
+    return 0x7C9D39
+  }
+  else if (planeCount === 5 ) {
+    return 0xAAB952
+  }
+  else if (planeCount === 6 ) {
+    return 0xAAB952
+  }
+  else if (planeCount === 7 ) {
+    return 0x9d9490
+  }
+  else if (planeCount === 8 ) {
+    return 0xb4adaa
+  }
+  else if (planeCount === 9 ) {
+    return 0xcbc6c4
+  }
+  else if (planeCount === 10 ) {
+    return 0xe2dfde
+  }
+  else if (planeCount === 11 ) {
+    return 0xf9f8f8
   }
 }
 
