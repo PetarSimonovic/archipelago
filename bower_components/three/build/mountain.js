@@ -17,7 +17,7 @@ document.body.appendChild(renderer.domElement);
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
-const world_geometry = new THREE.CylinderGeometry( 70, 70, 1, 20 )
+const world_geometry = new THREE.CylinderGeometry( 80, 80, 1, 20 )
 
 const world_material = new THREE.MeshBasicMaterial ( {
   color: 0x006994,
@@ -124,8 +124,14 @@ function getColour(planeCount) {
 }
 
 
-raiseTerrain()
+function buildWorld() {
+  let terrain = Math.floor(Math.random() * 150) + 50;
+  for (terrain; terrain > 0; terrain--) {
+    raiseTerrain();
+  }
+}
 
+buildWorld();
 
 // CONFIG
 
