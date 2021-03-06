@@ -49,7 +49,7 @@ scene.add(sun);
 
 function raiseMountain () {
   let mountainRadius = Math.floor(Math.random() * 20) + 15;
-  let mountainHeight = Math.floor(Math.random() * 20) + 15;
+  let mountainHeight = Math.floor(Math.random() * 5) + 15;
   let planePosition = groundLevel
   createPlane(mountainRadius, mountainHeight, planePosition);
 }
