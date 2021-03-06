@@ -43,29 +43,29 @@ scene.add(sun);
 
 // WORLD BUILDERS
 
-// Mountain
+// TERRAIN
 
 
 
-function raiseMountain () {
-  let mountainRadius = Math.floor(Math.random() * 10) + 1;
-  console.log(`mountainRadius: ${mountainRadius}`)
-  let mountainHeight = Math.floor(Math.random() * 10) + 1;
-  console.log(`mountainHeight: ${mountainHeight}`)
+function raiseTerrain () {
+  let terrainRadius = Math.floor(Math.random() * 10) + 1;
+  console.log(`terrainRadius: ${terrainRadius}`)
+  let terrainHeight = Math.floor(Math.random() * 10) + 1;
+  console.log(`terrainHeight: ${terrainHeight}`)
   let planePosition = groundLevel
-  createPlane(mountainRadius, mountainHeight, planePosition);
+  createPlane(terrainRadius, terrainHeight, planePosition);
 }
 
 
-// radiusTop (mountainRadius), radiusBottom (mountainRadius), height (random - 1-5), radialSegments (faces around circumference - random, 5-20), heightSegments( faces along height - random, 5-20)
+// radiusTop (terrainRadius), radiusBottom (terrainRadius), height (random - 1-5), radialSegments (faces around circumference - random, 5-20), heightSegments( faces along height - random, 5-20)
 
-function createPlane(mountainRadius, mountainHeight, planePosition) {
+function createPlane(terrainRadius, terrainHeight, planePosition) {
   let planeCount = 1
   let planeHeight = 0
-  while ( planeCount < mountainHeight && mountainRadius > 1) {
+  while ( planeCount < terrainHeight && terrainRadius > 1) {
     planeHeight = Math.floor(Math.random() * 4) + 1
-    console.log(mountainRadius)
-    let planeGeometry = new THREE.CylinderGeometry( mountainRadius, mountainRadius, 5, 20, 20 )
+    console.log(terrainRadius)
+    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 5, 20, 20 )
     let planeMaterial = new THREE.MeshBasicMaterial ( {
       color: getColour(planeCount),
       side: THREE.DoubleSide
@@ -75,7 +75,7 @@ function createPlane(mountainRadius, mountainHeight, planePosition) {
     plane.position.z = -100
     plane.position.y = planePosition
     planePosition += 5
-    mountainRadius -= 1
+    terrainRadius -= 1
     planeCount += 1
   }
 }
@@ -118,7 +118,7 @@ function getColour(planeCount) {
 }
 
 
-raiseMountain()
+raiseTerrain()
 
 
 // CONFIG
