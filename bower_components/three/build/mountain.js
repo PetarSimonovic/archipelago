@@ -17,7 +17,7 @@ document.body.appendChild(renderer.domElement);
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
-const world_geometry = new THREE.CylinderGeometry( 80, 80, 1, 20 )
+const world_geometry = new THREE.CylinderGeometry( 100, 100, 1, 20 )
 
 const world_material = new THREE.MeshBasicMaterial ( {
   color: 0x006994,
