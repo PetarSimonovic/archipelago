@@ -1,17 +1,19 @@
 
 // variables
+let angle = 0
+let radius = 20
+let drawingSurface = document.getElementById( 'canvas' );
+let renderer = new THREE.WebGLRenderer( { antialias: true, canvas: drawingSurface } );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( 1000, 600 );
 
 let seaLevel = 20;
 
-var world_canvas = document.getElementById("world_canvas");
-var drawSpace = document.getElementById("drawSpace")
 // BASIC SET UP
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0x87ceeb );
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer( { canvas: world_canvas } ); // add { alpha: true } to set background to transparent
-renderer.setSize( 1200, 600 );
-drawSpace.appendChild(renderer.domElement);
+
 
 
 // Build World
