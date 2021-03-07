@@ -1,0 +1,26 @@
+{
+  "name": "archipelago",
+  "version": "1.0.0",
+  "description": "An archipelago generator written in javascript using three.js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PetarSimonovic/archipelago.git"
+  },
+  "keywords": [
+    "archipelago",
+    "islands",
+    "landscape",
+    "generator",
+    "three.js"
+  ],
+  "author": "Petar Simonovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PetarSimonovic/archipelago/issues"
+  },
+  "homepage": "https://github.com/PetarSimonovic/archipelago#readme"
+}

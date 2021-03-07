@@ -3,14 +3,15 @@
 
 let seaLevel = 20;
 
-
+var world_canvas = document.getElementById("world_canvas");
+var drawSpace = document.getElementById("drawSpace")
 // BASIC SET UP
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0x87ceeb );
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer( ); // add { alpha: true } to set background to transparent
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild(renderer.domElement);
+const renderer = new THREE.WebGLRenderer( { canvas: world_canvas } ); // add { alpha: true } to set background to transparent
+renderer.setSize( 1200, 600 );
+drawSpace.appendChild(renderer.domElement);
 
 
 // Build World
@@ -153,12 +154,7 @@ animate();
 
 
 // CAMERA CONTROLS - update (below is deprecated)
-//
-// const controls = new OrbitControls( camera, renderer.domElement );
-//
-// //controls.update() must be called after any manual changes to the camera's transform
-// camera.position.set( 0, 20, 100 );
-// controls.update();
+
 
 
 
