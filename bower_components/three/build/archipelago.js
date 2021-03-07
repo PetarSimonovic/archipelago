@@ -149,7 +149,6 @@ buildWorld();
 function animate() {
   requestAnimationFrame ( animate );
   renderer.render ( scene, camera );
-  console.log(camera.position.y)
 
 }
 
