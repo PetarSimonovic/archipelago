@@ -2,8 +2,13 @@
 
 Archipelago is a landscape generator written in javascript using three.js.
 
-It randomly creates islands.
-
-Use the arrow keys to move left, right, up and down.
+Use the arrow keys to move the camera left, right, up and down.
 
 Zoom in with W, zoom out with S. Rotate the camera with A and D.
+
+
+## Credits
+
+Design and code: Petar Simonovic
+
+Font: Squada One designed by Joe Prince

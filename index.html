@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
+
 	 <link rel="stylesheet" href="style.css"/>
 		<meta charset="utf-8">
+
 		<title>archipelago</title>
 
 
@@ -17,9 +21,27 @@
 			</div>
 	</div>
 	</canvas>
+	<button onClick="window.location.reload();">generate terrain</button>
+	<button id="about">about</button>
+
+
 	</body>
+
+	<div id="modal" class="modal">
+		<div>
+	   <p style="background-color: #e2dfde">Archipelago is a landscape generator written in javascript and three.js.<br>
+		 Use the arrow keys to move left, right, up and down<br><br>
+		 Zoom in with W, zoom out with S<br><br>
+     Rotate the camera with A and D.<br><br>
+		 Design and code: Petar Simonovic<br><br>
+		 Font: Squada One by Joe Prince<br><br>
+		 <button id="close">close</button></p>
+	 </div>
+	 </div>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<script src="bower_components/three/build/three.js"></script>
 
 	<script defer src="bower_components/three/build/archipelago.js"></script>
-
+</body>
 </html>

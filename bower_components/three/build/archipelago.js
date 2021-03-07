@@ -3,7 +3,7 @@
 let angle = 0
 let radius = 20
 let drawingSurface = document.getElementById( 'canvas' );
-let renderer = new THREE.WebGLRenderer( { antialias: true, canvas: drawingSurface } );
+let renderer = new THREE.WebGLRenderer( { canvas: drawingSurface } );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( 1000, 600 );
 
@@ -36,7 +36,7 @@ world.position.z = -100
 world.position.y = seaLevel
 
 camera.position.z = -10
-camera.position.y = 50
+camera.position.y = 25
 
 
 // SUN  - is this even doing anything?
@@ -126,10 +126,7 @@ function getColour(planeCount) {
   else if (planeCount <= 36 ) {
     return 0xe2dfde
   }
-  else if (planeCount <= 38 ) {
-    return 0xf9f8f8
-  }
-  else if (planeCount <= 40 ) {
+  else if (planeCount >= 38 ) {
     return 0xf9f8f8
   }
 }
@@ -142,13 +139,17 @@ function buildWorld() {
   }
 }
 
+
 buildWorld();
+
+
 
 // CONFIG
 
 function animate() {
   requestAnimationFrame ( animate );
   renderer.render ( scene, camera );
+  console.log(camera.position.y)
 
 }
 
@@ -206,4 +207,25 @@ function checkKey(e) {
        scene.rotation.y -= 0.05;
       }
 
+}
+
+
+//event listeners
+about.addEventListener("click", function (e){
+  e.preventDefault();
+  openModal();
+});
+
+modal.addEventListener("click", function (e){
+  e.preventDefault();
+  closeModal();
+});
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+
+function closeModal() {
+  modal.style.display = "none";
 }
