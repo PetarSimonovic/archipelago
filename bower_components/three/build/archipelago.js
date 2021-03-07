@@ -146,7 +146,6 @@ buildWorld();
 function animate() {
   requestAnimationFrame ( animate );
   renderer.render ( scene, camera );
-   world.rotation.y += 0.001;
 
 }
 
@@ -170,36 +169,36 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    // if (e.keyCode == '38') {
-    //     camera.position.y += 1;
-    // }
-    // else if (e.keyCode == '40') {
-    //   camera.position.y -= 1;
-    // }
-    // else if (e.keyCode == '37') {
-    //   camera.position.x -= 1;
-    // }
-    // else if (e.keyCode == '39') {
-    //   camera.position.x += 1;
-    // }
-    //
-    // else if (e.keyCode == '87') {
-    //   if (camera.position.z < 0) {
-    //   camera.position.z -= 1;
-    // }
-    // else {
-    //   camera.position.z += 1;
-    // }
-    // }
-    //
-    // else if (e.keyCode == '83') {
-    //   if (camera.position.z < 0) {
-    //     camera.position.z += 1;
-    //   }
-    //   else {
-    //     camera.position.z -= 1;
-    //   }
-    // }
+    if (e.keyCode == '38') {
+        camera.position.y += 1;
+    }
+    else if (e.keyCode == '40') {
+      camera.position.y -= 1;
+    }
+    else if (e.keyCode == '37') {
+      camera.position.x -= 1;
+    }
+    else if (e.keyCode == '39') {
+      camera.position.x += 1;
+    }
+
+    else if (e.keyCode == '87') {
+      if (camera.position.z < 0) {
+      camera.position.z -= 1;
+    }
+    else {
+      camera.position.z += 1;
+    }
+    }
+
+    else if (e.keyCode == '83') {
+      if (camera.position.z < 0) {
+        camera.position.z += 1;
+      }
+      else {
+        camera.position.z -= 1;
+      }
+    }
 
      if (e.keyCode == '65') {
       scene.rotation.y += 0.05;
