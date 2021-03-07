@@ -17,7 +17,7 @@ document.body.appendChild(renderer.domElement);
 
 // radiusTop, radiusBottom, height, radialSegments (faces around circumference), heightSegments( faces along height)
 
-const world_geometry = new THREE.CylinderGeometry( 80, 80, 1, 20 )
+const world_geometry = new THREE.CylinderGeometry( 100, 100, 1, 20 )
 
 const world_material = new THREE.MeshBasicMaterial ( {
   color: 0x006994,
@@ -50,7 +50,7 @@ scene.add(sun);
 function raiseTerrain () {
   let terrainRadius = Math.floor(Math.random() * 20) + 1;
   console.log(`terrainRadius: ${terrainRadius}`)
-  let terrainHeight = Math.floor(Math.random() * 20) + 1;
+  let terrainHeight = Math.floor(Math.random() * 40) + 1;
   console.log(`terrainHeight: ${terrainHeight}`)
   createPlane(terrainRadius, terrainHeight);
 }
@@ -61,11 +61,13 @@ function raiseTerrain () {
 function createPlane(terrainRadius, terrainHeight) {
   let planeCount = 1
   let elevation = seaLevel
-  let planePositionX = getPosition();
-  let planePositionZ = getPosition() - 100;
+  let num = 50
+  let planePositionX = getPosition(num);
+  let planePositionZ = getPosition(num) - 100;
+  let gradient = 1000
   while ( planeCount < terrainHeight && terrainRadius > 1) {
-    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 1, 15, 20 )
-    let planeMaterial = new THREE.MeshBasicMaterial ( {
+    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 0.5, gradient )
+    let planeMaterial = new THREE.MeshToonMaterial ( {
       color: getColour(planeCount),
       side: THREE.DoubleSide
     });
@@ -73,59 +75,65 @@ function createPlane(terrainRadius, terrainHeight) {
     scene.add(plane)
     plane.position.z = -100
     plane.position.y = elevation
-    plane.position.x = planePositionX
-    plane.position.z = planePositionZ
-    elevation += 1
-    terrainRadius -= 1
+    plane.position.x = planePositionX + getPosition(0.5)
+    plane.position.z = planePositionZ + getPosition(0.5)
+    elevation += 0.5
+    terrainRadius -= 0.6
     planeCount += 1
+    if (planeCount >= 20 ) {
+      gradient = 10
+    }
   }
 }
 
-function getPosition() {
-  let position = Math.floor(Math.random() * 50);
+function getPosition(num) {
+  let position = (Math.random() * num);
   position *= Math.round(Math.random()) ? 1 : -1;
   return position
 }
 
 function getColour(planeCount) {
-  if (planeCount <= 2 ) {
+  if (planeCount <= 2) {
+    return 0xF2D16B
+  }
+  if (planeCount <=  4) {
     return 0x2D6514
   }
-  else if (planeCount <= 4 ) {
+  else if (planeCount <= 8 ) {
     return 0x528124
   }
-  else if (planeCount <= 6 ) {
-    return 0x7C9D39
-  }
-  else if (planeCount <= 8 ) {
-    return 0x7C9D39
-  }
-  else if (planeCount <= 10 ) {
-    return 0xAAB952
-  }
   else if (planeCount <= 12 ) {
-    return 0xAAB952
-  }
-  else if (planeCount <= 14 ) {
-    return 0x9d9490
+    return 0x7C9D39
   }
   else if (planeCount <= 16 ) {
-    return 0xb4adaa
-  }
-  else if (planeCount <= 18 ) {
-    return 0xcbc6c4
+    return 0xAAB952
   }
   else if (planeCount <= 20 ) {
+    return 0x8C8070
+  }
+  else if (planeCount <= 24 ) {
+    return 0x9d9490
+  }
+  else if (planeCount <= 28 ) {
+    return 0xb4adaa
+  }
+  else if (planeCount <= 32 ) {
+    return 0xcbc6c4
+  }
+  else if (planeCount <= 36 ) {
     return 0xe2dfde
   }
-  else if (planeCount === 11 ) {
+  else if (planeCount <= 38 ) {
+    return 0xf9f8f8
+  }
+  else if (planeCount <= 40 ) {
     return 0xf9f8f8
   }
 }
 
 
 function buildWorld() {
-  let terrain = Math.floor(Math.random() * 150) + 50;
+  let terrain = Math.floor(Math.random() * 40) + 30;
   for (terrain; terrain > 0; terrain--) {
     raiseTerrain();
   }
@@ -144,41 +152,60 @@ function animate() {
 animate();
 
 
-// KEY PRESS DETECTION - update (below is deprecated)
+// CAMERA CONTROLS - update (below is deprecated)
 
-document.onkeydown = checkKey;
+const controls = new OrbitControls( camera, renderer.domElement );
 
-function checkKey(e) {
+//controls.update() must be called after any manual changes to the camera's transform
+camera.position.set( 0, 20, 100 );
+controls.update();
 
-    e = e || window.event;
 
-    if (e.keyCode == '38') {
-        camera.position.y += 1;
-    }
-    else if (e.keyCode == '40') {
-      camera.position.y -= 1;
-    }
-    else if (e.keyCode == '37') {
-      camera.position.x += 1;
-    }
-    else if (e.keyCode == '39') {
-      camera.position.x -= 1;
-    }
 
-    else if (e.keyCode == '87') {
-      camera.position.z -= 1;
-    }
 
-    else if (e.keyCode == '83') {
-      camera.position.z += 1;
-    }
-
-    else if (e.keyCode == '65') {
-      camera.rotation.y += 0.05;
-    }
-
-     else if (e.keyCode == '68') {
-       camera.rotation.y -= 0.05;
-      }
-
-}
+// document.onkeydown = checkKey;
+//
+// function checkKey(e) {
+//
+//     e = e || window.event;
+//
+//     if (e.keyCode == '38') {
+//         camera.position.y += 1;
+//     }
+//     else if (e.keyCode == '40') {
+//       camera.position.y -= 1;
+//     }
+//     else if (e.keyCode == '37') {
+//       camera.position.x -= 1;
+//     }
+//     else if (e.keyCode == '39') {
+//       camera.position.x += 1;
+//     }
+//
+//     else if (e.keyCode == '87') {
+//       if (camera.position.z < 0) {
+//       camera.position.z -= 1;
+//     }
+//     else {
+//       camera.position.z += 1;
+//     }
+//     }
+//
+//     else if (e.keyCode == '83') {
+//       if (camera.position.z < 0) {
+//         camera.position.z += 1;
+//       }
+//       else {
+//         camera.position.z -= 1;
+//       }
+//     }
+//
+//     else if (e.keyCode == '65') {
+//       camera.rotation.y += 0.05;
+//     }
+//
+//      else if (e.keyCode == '68') {
+//        camera.rotation.y -= 0.05;
+//       }
+//
+// }
