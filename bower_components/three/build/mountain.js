@@ -106,10 +106,10 @@ function getColour(planeCount) {
     return 0x7C9D39
   }
   else if (planeCount <= 16 ) {
-    return 0x7C9D39
+    return 0xAAB952
   }
   else if (planeCount <= 20 ) {
-    return 0xAAB952
+    return 0x8C8070
   }
   else if (planeCount <= 24 ) {
     return 0x9d9490
@@ -152,41 +152,60 @@ function animate() {
 animate();
 
 
-// KEY PRESS DETECTION - update (below is deprecated)
+// CAMERA CONTROLS - update (below is deprecated)
 
-document.onkeydown = checkKey;
+const controls = new OrbitControls( camera, renderer.domElement );
 
-function checkKey(e) {
+//controls.update() must be called after any manual changes to the camera's transform
+camera.position.set( 0, 20, 100 );
+controls.update();
 
-    e = e || window.event;
 
-    if (e.keyCode == '38') {
-        camera.position.y += 1;
-    }
-    else if (e.keyCode == '40') {
-      camera.position.y -= 1;
-    }
-    else if (e.keyCode == '37') {
-      camera.position.x -= 1;
-    }
-    else if (e.keyCode == '39') {
-      camera.position.x += 1;
-    }
 
-    else if (e.keyCode == '87') {
-      camera.position.z -= 1;
-    }
 
-    else if (e.keyCode == '83') {
-      camera.position.z += 1;
-    }
-
-    else if (e.keyCode == '65') {
-      camera.rotation.y += 0.05;
-    }
-
-     else if (e.keyCode == '68') {
-       camera.rotation.y -= 0.05;
-      }
-
-}
+// document.onkeydown = checkKey;
+//
+// function checkKey(e) {
+//
+//     e = e || window.event;
+//
+//     if (e.keyCode == '38') {
+//         camera.position.y += 1;
+//     }
+//     else if (e.keyCode == '40') {
+//       camera.position.y -= 1;
+//     }
+//     else if (e.keyCode == '37') {
+//       camera.position.x -= 1;
+//     }
+//     else if (e.keyCode == '39') {
+//       camera.position.x += 1;
+//     }
+//
+//     else if (e.keyCode == '87') {
+//       if (camera.position.z < 0) {
+//       camera.position.z -= 1;
+//     }
+//     else {
+//       camera.position.z += 1;
+//     }
+//     }
+//
+//     else if (e.keyCode == '83') {
+//       if (camera.position.z < 0) {
+//         camera.position.z += 1;
+//       }
+//       else {
+//         camera.position.z -= 1;
+//       }
+//     }
+//
+//     else if (e.keyCode == '65') {
+//       camera.rotation.y += 0.05;
+//     }
+//
+//      else if (e.keyCode == '68') {
+//        camera.rotation.y -= 0.05;
+//       }
+//
+// }
