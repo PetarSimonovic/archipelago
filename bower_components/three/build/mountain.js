@@ -61,9 +61,10 @@ function raiseTerrain () {
 function createPlane(terrainRadius, terrainHeight) {
   let planeCount = 1
   let elevation = seaLevel
-  let planePositionX = getPosition();
-  let planePositionZ = getPosition() - 100;
-  let gradient = 40
+  let num = 50
+  let planePositionX = getPosition(num);
+  let planePositionZ = getPosition(num) - 100;
+  let gradient = 1000
   while ( planeCount < terrainHeight && terrainRadius > 1) {
     let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 0.5, gradient )
     let planeMaterial = new THREE.MeshToonMaterial ( {
@@ -74,19 +75,19 @@ function createPlane(terrainRadius, terrainHeight) {
     scene.add(plane)
     plane.position.z = -100
     plane.position.y = elevation
-    plane.position.x = planePositionX
-    plane.position.z = planePositionZ
+    plane.position.x = planePositionX + getPosition(0.5)
+    plane.position.z = planePositionZ + getPosition(0.5)
     elevation += 0.5
-    terrainRadius -= 0.5
+    terrainRadius -= 0.6
     planeCount += 1
-    if (gradient > 5) {
-      gradient -=1
+    if (planeCount >= 20 ) {
+      gradient = 10
     }
   }
 }
 
-function getPosition() {
-  let position = Math.floor(Math.random() * 30);
+function getPosition(num) {
+  let position = (Math.random() * num);
   position *= Math.round(Math.random()) ? 1 : -1;
   return position
 }
@@ -95,35 +96,35 @@ function getColour(planeCount) {
   if (planeCount <= 2) {
     return 0xF2D16B
   }
-  if (planeCount <=  5) {
+  if (planeCount <=  4) {
     return 0x2D6514
   }
-  else if (planeCount <= 10 ) {
+  else if (planeCount <= 8 ) {
     return 0x528124
   }
-  else if (planeCount <= 15 ) {
+  else if (planeCount <= 12 ) {
+    return 0x7C9D39
+  }
+  else if (planeCount <= 16 ) {
     return 0x7C9D39
   }
   else if (planeCount <= 20 ) {
-    return 0x7C9D39
-  }
-  else if (planeCount <= 25 ) {
     return 0xAAB952
   }
-  else if (planeCount <= 30 ) {
-    return 0xAAB952
-  }
-  else if (planeCount <= 32 ) {
+  else if (planeCount <= 24 ) {
     return 0x9d9490
   }
-  else if (planeCount <= 34 ) {
+  else if (planeCount <= 28 ) {
     return 0xb4adaa
   }
-  else if (planeCount <= 36 ) {
+  else if (planeCount <= 32 ) {
     return 0xcbc6c4
   }
-  else if (planeCount <= 38 ) {
+  else if (planeCount <= 36 ) {
     return 0xe2dfde
+  }
+  else if (planeCount <= 38 ) {
+    return 0xf9f8f8
   }
   else if (planeCount <= 40 ) {
     return 0xf9f8f8
@@ -132,7 +133,7 @@ function getColour(planeCount) {
 
 
 function buildWorld() {
-  let terrain = Math.floor(Math.random() * 150) + 50;
+  let terrain = Math.floor(Math.random() * 40) + 30;
   for (terrain; terrain > 0; terrain--) {
     raiseTerrain();
   }
