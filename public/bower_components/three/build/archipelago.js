@@ -72,7 +72,6 @@ function createPlane(terrainRadius, terrainHeight) {
     let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 0.5, gradient )
     let planeMaterial = new THREE.MeshToonMaterial ( {
       color: getColour(planeCount),
-      side: THREE.DoubleSide
     });
     let plane  = new THREE.Mesh (planeGeometry, planeMaterial)
     scene.add(plane)
