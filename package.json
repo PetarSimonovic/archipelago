@@ -4,7 +4,7 @@
   "description": "An archipelago generator written in javascript using three.js",
   "main": "index.html",
   "scripts": {
-    "start": "open index.html"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/PetarSimonovic/archipelago/issues"
   },
-  "homepage": "https://github.com/PetarSimonovic/archipelago#readme"
+  "homepage": "https://github.com/PetarSimonovic/archipelago#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
