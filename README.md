@@ -8,8 +8,10 @@ Use the arrow keys to move the camera left, right, up and down.
 
 Zoom in with W, zoom out with S. Rotate the camera with A and D.
 
-**Credits** 
+**Credits**
 
 Design and code: Petar Simonovic
 
 Font: Squada One designed by Joe Prince
+
+**Version 1.0**
