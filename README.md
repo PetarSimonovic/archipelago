@@ -1,5 +1,7 @@
 # archipelago
 
+![](archipelago.png)
+
 Archipelago is a landscape generator written in javascript using three.js.
 
 Use the arrow keys to move the camera left, right, up and down.
