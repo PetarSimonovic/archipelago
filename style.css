@@ -1,3 +1,8 @@
+@font-face {
+  font-family: SquadaOne;
+  src: url("SquadaOne-Regular.ttf");
+}
+
 
 html {
   background-color: #2a2727;
@@ -18,14 +23,14 @@ header {
 h1 {
   color: #e2dfde;
   background-color: #2a2727;
-  font-family: 'Squada One', cursive;
+  font-family: 'SquadaOne';
 }
 
 button {
   border: none;
   color: #e2dfde;
   background-color: #2a2727;
-  font-family: 'Squada One', cursive;
+  font-family: 'SquadaOne';
   font-size: 20px;
 }
 

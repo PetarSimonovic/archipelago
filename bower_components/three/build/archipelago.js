@@ -136,15 +136,12 @@ function buildWorld() {
   let terrain = Math.floor(Math.random() * 40) + 30;
   for (terrain; terrain > 0; terrain--) {
     raiseTerrain();
+    }
   }
-}
-
-
-buildWorld();
 
 
 
-// CONFIG
+// ANIMATE
 
 function animate() {
   requestAnimationFrame ( animate );
@@ -152,13 +149,14 @@ function animate() {
 
 }
 
+
+// BUILD WORLD
+
+buildWorld();
 animate();
 
 
-// CAMERA CONTROLS - update (below is deprecated)
-
-
-
+// CAMERA CONTROLS
 
 
 document.onkeydown = checkKey;
@@ -167,46 +165,77 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (e.keyCode == '38') {
+    if (e.key == "ArrowUp") {
         camera.position.y += 1;
     }
-    else if (e.keyCode == '40') {
+    else if (e.key == 'ArrowDown') {
+      if (camera.position.y >= 25) {
       camera.position.y -= 1;
+      }
     }
-    else if (e.keyCode == '37') {
-      camera.position.x -= 1;
+    else if (e.key == 'ArrowLeft') {
+      camera.rotation.y += 0.02;
+      console.log(THREE.Math.radToDeg(camera.rotation.y)  % 360)
+
     }
-    else if (e.keyCode == '39') {
-      camera.position.x += 1;
+    else if (e.key == 'ArrowRight') {
+      camera.rotation.y -= 0.02;
+      console.log(THREE.Math.radToDeg(camera.rotation.y)  % 360)
     }
 
-    else if (e.keyCode == '87') {
-      if (camera.position.z < 0) {
-      camera.position.z -= 1;
-    }
-    else {
-      camera.position.z += 1;
-    }
+    else if (e.key == 'w') {
+      direction = new THREE.Vector3();
+      camera.getWorldDirection( direction );
+      camera.position.add( direction );
+
+      console.log(camera.position.z)
     }
 
-    else if (e.keyCode == '83') {
-      if (camera.position.z < 0) {
+    else if (e.key == 's') {
         camera.position.z += 1;
-      }
-      else {
-        camera.position.z -= 1;
-      }
+        console.log(camera.position.z)
     }
-
-     if (e.keyCode == '65') {
-      scene.rotation.y += 0.05;
-    }
-
-     else if (e.keyCode == '68') {
-       scene.rotation.y -= 0.05;
-      }
 
 }
+
+// function moveForward() {
+//
+//   angle = console.log(THREE.Math.radToDeg(camera.rotation.y)  % 360
+//
+//   if (camera.rotation.y === 0) {
+//     camera.position.z -= 1;
+//   }
+//   else if (camera.rotation.y >0 && camera.rotation.y <0.90) {
+//     camera.position.z -= 1;
+//     camera.position.x -= 1;
+//   }
+//   else if (camera.rotation.y === 0.90) {
+//     camera.position.x -= 1;
+//    }
+//   else if (camera.roation.y > 0.90 && camera.roation.y <1.80) {
+//    camera.position.x -= 1;
+//    camera.position.z += 1;
+//  }
+//  else if (camera.rotation.y === 1.80) {
+//    camera.position.z += 1;
+//   }
+//   else if (camera.roation.y > 1.80 && camera.roation.y < 2.70) {
+//    camera.position.x += 1;
+//    camera.position.z -= 1;
+//  }
+//  else if (camera.roation.y === 2.70) {
+//   camera.position.x += 1;
+// }
+// else if (camera.roation.y > 2.70 && camera.roation.y <359) {
+//  camera.position.x += 1;
+//  camera.position.z -= 1;
+//  }
+//  else if (camera.roation.y === 0) {
+//   camera.position.z -= 1;
+//   }
+//
+// }
+
 
 
 //event listeners
