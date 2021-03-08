@@ -6,9 +6,9 @@ archipelago is a landscape generator written in javascript using three.js.
 
 https://warm-escarpment-84694.herokuapp.com
 
-Use the arrow keys to move the camera left, right, up and down.
+Use the arrow keys to move up and down, and rotate the view left or right
 
-Zoom in with W, zoom out with S. Rotate the camera with A and D.
+Press w to move forward
 
 **Credits**
 
