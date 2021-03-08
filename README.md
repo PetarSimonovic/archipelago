@@ -2,7 +2,7 @@
 
 ![](archipelago.png)
 
-archipelago is a landscape generator written in javascript using three.js.
+archipelago is a landscape generator written in javascript and three.js.
 
 https://warm-escarpment-84694.herokuapp.com
 
