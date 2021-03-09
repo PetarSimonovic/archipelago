@@ -68,8 +68,9 @@ function createPlane(terrainRadius, terrainHeight) {
   let planePositionX = getPosition(num);
   let planePositionZ = getPosition(num) - 100;
   let gradient = 1000
+  let crags = 0.5
   while ( planeCount < terrainHeight && terrainRadius > 1) {
-    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, 0.5, gradient )
+    let planeGeometry = new THREE.CylinderGeometry( terrainRadius, terrainRadius, crags, gradient )
     let planeMaterial = new THREE.MeshToonMaterial ( {
       color: getColour(planeCount),
     });
@@ -82,8 +83,9 @@ function createPlane(terrainRadius, terrainHeight) {
     elevation += 0.5
     terrainRadius -= 0.6
     planeCount += 1
-    if (planeCount >= 20 ) {
-      gradient = 10
+    if (planeCount > 16 ) {
+      gradient = Math.floor(Math.random() * 6) + 4
+      crags += 0.3
     }
   }
 }
